@@ -1,0 +1,37 @@
+def inputData():
+    inputTotalProcess = int(input('Number of process : '));
+    array = [];
+    for x in range(0, inputTotalProcess):
+        a = 'p' + str(x + 1);
+        burstTime = int(input(a + ': '));
+        b = [a, burstTime];
+        array.append(b);
+
+    empty = [];
+    for y in range(0, len(array) - 1):
+        for y in range(0, len(array) - 1):
+            if array[y][1] > array[y + 1][1]:
+                empty = array[y]
+                array[y] = array[y + 1]
+                array[y + 1] = empty
+    return array,inputTotalProcess
+
+def mainFunction(array,inputTotalProcess):
+    time=0
+    totalTime=0
+    chart = ''
+    chart2 = ''
+    string=''
+    for z in range(0,len(array)):
+        time =time + array[z][1]
+        chart=chart+array[z][0]
+        if(z<len(array)-1):
+            totalTime=totalTime+time
+        string=string+' '+array[z][0]+' '+ str(time)
+    print('GANTT Chart : '+'0'+string)
+    averageWatingTime=totalTime/inputTotalProcess
+    print('Average time : '+ str(averageWatingTime) + ' ms')
+
+a,b=inputData()
+
+mainFunction(a,b)
