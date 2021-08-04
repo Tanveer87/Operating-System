@@ -1,0 +1,38 @@
+def inputData():
+    inputTotalProcess = int(input('Number of process : '));
+    burstTimeArray = [];
+    processArray = [];
+    for x in range(1, inputTotalProcess + 1):
+        a = 'p' + str(x);
+        processArray.append(a);
+        burstTime = input(a + ': ');
+        burstTimeArray.append(int(burstTime));
+    return burstTimeArray, inputTotalProcess, processArray;
+
+
+def averageTime(burstTimeArray, inputTotalProcess):
+    time = 0;
+    totalTime = 0;
+    waitngTimeArray = [];
+    for y in range(0, len(burstTimeArray)):
+        time = time + int(burstTimeArray[y]);
+        waitngTimeArray.append(time);
+        if (y < len(burstTimeArray) - 1):
+            totalTime = totalTime + time;
+
+    averageTime = int(totalTime) / int(inputTotalProcess);
+    print('Average time : ' + str(averageTime) + ' ms ');
+    return waitngTimeArray;
+
+
+def ganttChart(waitngTimeArray, processArray):
+    chart = '';
+    for z in range(0, len(waitngTimeArray)):
+        element = processArray[z] + ' ' + str(waitngTimeArray[z]);
+        chart = chart + ' ' + element;
+    print('GANTT Chart : '+'0' + chart);
+
+
+a, b, c = inputData();
+ganttChart(d, c);
+d = averageTime(a, b);
